@@ -24,8 +24,8 @@ app.use(session({
 // Database connection pool
 const pool = mysql.createPool({
   host: process.env.HOST,
-  user: 'anis',
-  password: 'Powerbanana42127',
+  user: process.env.USER,
+  password: process.env.DB_PASSWORD,
   database: 'shop_goodwill',
   waitForConnections: true,
   connectionLimit: 10,
