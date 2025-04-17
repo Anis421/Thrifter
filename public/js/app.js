@@ -122,50 +122,50 @@ function loadHomePage() {
 
 // Load categories page
 function loadCategoriesPage() {
-  return Promise.resolve([
-    { id: 1, name: 'Electronics', description: 'Devices and gadgets' },
-    { id: 2, name: 'Clothing', description: 'Apparel and fashion' },
-    { id: 3, name: 'Books', description: 'Read and learn' }
-  ]);
-  // const appContainer = document.getElementById('app');
-  // appContainer.innerHTML = `
-  //   <div class="container">
-  //     <h1>Browse Categories</h1>
-  //     <div id="categories-list" class="products-container">
-  //       <div class="loading">Loading categories...</div>
-  //     </div>
-  //   </div>
-  // `;
+  // return Promise.resolve([
+  //   { id: 1, name: 'Electronics', description: 'Devices and gadgets' },
+  //   { id: 2, name: 'Clothing', description: 'Apparel and fashion' },
+  //   { id: 3, name: 'Books', description: 'Read and learn' }
+  // ]);
+  const appContainer = document.getElementById('app');
+  appContainer.innerHTML = `
+    <div class="container">
+      <h1>Browse Categories</h1>
+      <div id="categories-list" class="products-container">
+        <div class="loading">Loading categories...</div>
+      </div>
+    </div>
+  `;
   
-  // // Load categories
-  // loadCategories()
-  //   .then(categories => {
-  //     const categoriesList = document.getElementById('categories-list');
+  // Load categories
+  loadCategories()
+    .then(categories => {
+      const categoriesList = document.getElementById('categories-list');
       
-  //     if (categories.length === 0) {
-  //       categoriesList.innerHTML = '<p>No categories found</p>';
-  //       return;
-  //     }
+      if (categories.length === 0) {
+        categoriesList.innerHTML = '<p>No categories found</p>';
+        return;
+      }
       
-  //     let categoriesHTML = '';
-  //     categories.forEach(category => {
-  //       categoriesHTML += `
-  //         <div class="product-card">
-  //           <div class="product-info">
-  //             <h3 class="product-title">${category.name}</h3>
-  //             <p>${category.description || 'Browse items in this category'}</p>
-  //             <a href="/search.html?category=${category.id}" class="btn">Browse</a>
-  //           </div>
-  //         </div>
-  //       `;
-  //     });
+      let categoriesHTML = '';
+      categories.forEach(category => {
+        categoriesHTML += `
+          <div class="product-card">
+            <div class="product-info">
+              <h3 class="product-title">${category.name}</h3>
+              <p>${category.description || 'Browse items in this category'}</p>
+              <a href="/search.html?category=${category.id}" class="btn">Browse</a>
+            </div>
+          </div>
+        `;
+      });
       
-  //     categoriesList.innerHTML = categoriesHTML;
-  //   })
-  //   .catch(error => {
-  //     console.error('Error loading categories:', error);
-  //     document.getElementById('categories-list').innerHTML = '<p>Error loading categories</p>';
-  //   });
+      categoriesList.innerHTML = categoriesHTML;
+    })
+    .catch(error => {
+      console.error('Error loading categories:', error);
+      document.getElementById('categories-list').innerHTML = '<p>Error loading categories</p>';
+    });
 }
 
 // Load search page
